@@ -392,6 +392,5 @@ In the example above, the first six results in the `dataList` object match with 
 # Technology
 The Network Map Panel makes use of the following libraries:
 * Leaflet
-* Atlas3
 * D3
 * Lodash
