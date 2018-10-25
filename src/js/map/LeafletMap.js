@@ -569,6 +569,11 @@ var LeafletMap = function(params) {
             bg.attr("pointer-events","auto");
             bg.classed(map.containerId(), true);
         });
+    
+    lmap.on("click", function(e){
+                let coords = e.latlng.lat + ", " + e.latlng.lng;
+                console.log("Lat, Lng ", coords);
+        });
 
     lmap.on("viewreset", function(d){
             map.update();

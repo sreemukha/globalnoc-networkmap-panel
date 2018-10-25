@@ -1,0 +1,26 @@
+<div class="modal-body">
+  <div class="modal-header">
+    <h2 class="modal-header-title">
+      <i class="fa fa-globe"></i>
+      <span class="p-l-1">Map Editor - {{ctrl.panel.name[ctrl.map_edit_index]}}</span>
+    </h2>
+
+    <a class="modal-header-close" ng-click="dismiss()">
+      <i class="fa fa-remove"></i>
+    </a>
+  </div>
+
+  <div class="modal-content">
+    <div id="editor_map" style="height: 500px;">
+      <div id="container_editor_map" class="modal-content" style="height: 100%; width:100%; z-index:0" ></div>
+    </div>
+
+    <div class="gf-form-button-row">
+      <button class="btn btn-secondary" ng-click="#">
+         <i class="fa fa-save"></i>&nbsp;Save
+       </button>
+       <button class="btn btn-secondary" ng-click="dismiss()">
+         <i class="fa fa-save"></i>&nbsp;Save &amp; Exit
+       </button>
+    </div>
+</div>

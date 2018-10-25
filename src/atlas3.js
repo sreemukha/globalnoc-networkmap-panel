@@ -21,6 +21,7 @@ import $ from 'jquery';
 import {MetricsPanelCtrl} from 'app/plugins/sdk';
 import {appEvents} from 'app/core/core';
 import LeafletMap from './js/atlas3_leafletmap.js';
+import EditorMap from './js/atlas3_editormap.js';
 import {Scale} from './scale';
 import {CustomHover} from './CustomHover';
 
@@ -90,6 +91,8 @@ export class Atlas3 extends MetricsPanelCtrl {
         this.rgb_values = [];
         this.hex_values = [];
         this.json_index = null;
+        this.edit_map = null;
+        this.map_edit_index = null;
         this.json_content = '';
         this.custom_hover = new CustomHover();
         this.scale = new Scale($scope,this.panel.colorScheme);
@@ -376,7 +379,39 @@ export class Atlas3 extends MetricsPanelCtrl {
     onInitPanelActions(actions) {
          this.render();
     }
-     
+
+    mapModal() {
+        var modalScope = this.$scope.$new(false);
+        modalScope.panel = this.panel;
+        appEvents.emit('show-modal', {
+            src: 'public/plugins/globalnoc-networkmap-panel/map_editor.html',
+            scope: modalScope,
+        });
+    }
+
+    mapEditor(index) {
+        this.mapModal();
+        this.map_edit_index = index;
+        let that = this;
+        /* setTimeout(function(){
+            this.document.getElementById('container_editor_map').innerHTML = "<h1>" + that.panel.name[index] + "</h1>";
+        },1000);*/
+        setTimeout(this.createEditorMap, 1000, that);
+    }
+    
+    createEditorMap(that){
+        console.log(this);
+        that.edit_map = EditorMap({
+            map_tile_url: that.panel.map_tile_url,
+            containerId: 'container_editor_map',
+            topology: that.panel.mapSrc[that.map_edit_index],
+            zoom: that.panel.zoom,
+            lat: that.panel.lat,
+            lng: that.panel.lng
+        });
+        console.log(that.edit_map);
+    }
+
     jsonModal(){
         var modalScope = this.$scope.$new(false);
         modalScope.panel = this.panel; 

@@ -143,6 +143,7 @@ var buildAll = function(options){
     gulp.src('src/partials/editor.html').pipe(gulp.dest('./dist'));
     gulp.src('src/partials/display_editor.html').pipe(gulp.dest('./dist'));
     gulp.src('src/partials/json_editor.html').pipe(gulp.dest('./dist'));
+    gulp.src('src/partials/map_editor.html').pipe(gulp.dest('./dist'));
     createPlugin({ files: [ './src/*.js',]});
 
     //create the datasource
@@ -150,11 +151,17 @@ var buildAll = function(options){
         name: 'DataSource',
         dev: options.dev
     });
-    
+
+    // create the EditorMap
+    createJS({
+            name: 'EditorMap',
+            dev: options.dev
+    });
     //create the LeafletMap
     createJS({
             name: 'LeafletMap',
-            dev: options.dev});
+            dev: options.dev
+    });
     createCSS({
             name: 'LeafletMap',
                 files: [

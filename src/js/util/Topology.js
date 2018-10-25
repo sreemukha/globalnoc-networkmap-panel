@@ -29,7 +29,7 @@ var Functions = require('./Functions.js');
 */
 var Topology = function(params, offsets){
     var data     = _.cloneDeep(params);
-    var offsets = offsets;
+    var offsets  = offsets || [-360, 0, 360];
     var poi            = [];
     var topology       = {};
     topology.__factory__ = 'Topology';
