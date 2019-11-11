@@ -533,13 +533,6 @@ export class Atlas3 extends MetricsPanelCtrl {
                 return;
             }
 
-            // delay first render
-            if (firstRender) {
-                firstRender = false;
-                setTimeout(render, 100);
-                return;
-            }
-
             ctrl.panel.legend.adjLoadLegend = {
                 horizontal: true,
             }
@@ -638,9 +631,14 @@ export class Atlas3 extends MetricsPanelCtrl {
                 }
                 return;
             }
+            let container_height = 0;
+            let container_width = 0;
 
-            if(!document.getElementById('container_map_' + ctrl.panel.id)){
+            if(!document.getElementById(ctrl.map_holder_id)){
                 console.log("Container not found");
+            } else {
+                container_height = document.getElementById(ctrl.map_holder_id).offsetHeight;
+                container_width = document.getElementById(ctrl.map_holder_id).offsetWidth;
             }
 
             if(!ctrl.panel.use_image){
